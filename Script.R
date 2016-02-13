@@ -22,4 +22,4 @@ df.airbnb = df.airbnb.raw
 df.airbnb$geometry <- NULL
 df.airbnb$description <- NULL
 
-write_csv(df.airbnb, file = "/Users/stinewesselhoff/GitHub")
+write.csv(df.airbnb,"https://github.com/StineWesselhoff/Speciale_airbnb/airbnb.csv")
