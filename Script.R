@@ -12,14 +12,27 @@ library("ggmap")
 library("gtable")
 library("scales")
 
-df.airbnb.raw = read_csv("/Users/stinewesselhoff/Downloads/Airbnb_Copenhagen_February_2015.csv")
-df.airbnb.raw$geometry = str_trim(gsub("<Point><coordinates>", "", df.airbnb.raw$geometry))
-df.airbnb.raw$geometry = str_trim(gsub(",0.0</coordinates></Point>", "", df.airbnb.raw$geometry))
+#The scrapping part
 
-df.airbnb.raw$lot = substr(df.airbnb.raw$geometry,1,9)
-df.airbnb.raw$lat = substr(df.airbnb.raw$geometry,11,19)
-df.airbnb = df.airbnb.raw
-df.airbnb$geometry <- NULL
-df.airbnb$description <- NULL
+#df.airbnb.raw = read_csv("/Users/stinewesselhoff/Downloads/Airbnb_Copenhagen_February_2015.csv")
+#df.airbnb.raw$geometry = str_trim(gsub("<Point><coordinates>", "", df.airbnb.raw$geometry))
+#df.airbnb.raw$geometry = str_trim(gsub(",0.0</coordinates></Point>", "", df.airbnb.raw$geometry))
 
-write.csv(df.airbnb,"https://github.com/StineWesselhoff/Speciale_airbnb/airbnb.csv")
+#df.airbnb.raw$lot = substr(df.airbnb.raw$geometry,1,9)
+#df.airbnb.raw$lat = substr(df.airbnb.raw$geometry,11,19)
+#df.airbnb = df.airbnb.raw
+#df.airbnb$geometry <- NULL
+#df.airbnb$description <- NULL
+
+#write.csv(df.airbnb,"/Users/stinewesselhoff/GitHub/Speciale_airbnb/airbnb.csv")
+
+df.airbnb = read_csv("https://raw.githubusercontent.com/StineWesselhoff/Speciale_airbnb/master/airbnb.csv")
+
+
+Copenhagen = get_map("Copenhagen,Denmark", zoom = 12,  scale=2, maptype= c("toner-lite"))
+
+df.geo = df.airbnb %>%
+  group_by(host, lat, lot) %>%
+summarize(suminc = sum(income, na.rm = TRUE))
+
+  
