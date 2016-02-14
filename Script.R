@@ -35,4 +35,10 @@ df.geo = df.airbnb %>%
   group_by(host, lat, lot) %>%
 summarize(suminc = sum(income, na.rm = TRUE))
 
+
+
+p = ggmap(Copenhagen) 
+p + geom_point(data=df.geo, aes(x=lot, y=lat, size = suminc, alpha = 0.4, color = "blue")) +
+  labs(title = "Copenhagen", x="", y="")+
+  theme_minimal() + theme_tufte() + theme(legend.position="none")
   

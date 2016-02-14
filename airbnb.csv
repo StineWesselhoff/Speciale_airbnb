@@ -1,4 +1,4 @@
-"","name","room_type","host","price","income","rank","lot","lat"
+"","name","room_type","host","price","income","rank","lon","lat"
 "1",26473,"Entire home/apt",112210,533,61295,1,"12.576977","55.675895"
 "2",621354,"Entire home/apt",3079713,291,37248,2,"12.579829","55.680467"
 "3",407585,"Entire home/apt",2030128,437,35834,3,"12.590709","55.667672"
